@@ -17,7 +17,7 @@ for(let i = 0; i < gridCount; i++) {
     const element = document.createElement('div');
     element.classList.add('cell');
     element.setAttribute('id', i + 1);
-    element.textContent = i + 1;
+    //element.textContent = i + 1;
     element.style.display = "flex";
     element.style.justifyContent = "center";
     element.style.alignItems = "center";
@@ -25,8 +25,20 @@ for(let i = 0; i < gridCount; i++) {
     element.style.fontSize = "3rem";
     element.style.fontWeight = "bold";
     element.style.background = "white";
+    element.addEventListener('mouseover', () => {
+        element.style.background = "green";
+        console.log("forEach worked");
+    });
+
     grid.appendChild(element);
 }
+
+// const cells = document.querySelectorAll('cell');
+// cells.forEach((cell) => {
+//     cell.addEventListener('mouseover', () => {
+//         console.log("forEach worked");
+//     })
+// })
 
 container.appendChild(grid);
 document.body.appendChild(container);
