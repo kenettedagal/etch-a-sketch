@@ -1,8 +1,6 @@
-const container = document.createElement('div');
-const grid = document.createElement('div');
-const button = document.createElement('button');
-
-document.body.style.width = 'auto';
+let container = document.createElement('div');
+let grid = document.createElement('div');
+let button = document.createElement('button');
 
 container.classList.add('container');
 container.style.background = "black";
@@ -12,10 +10,10 @@ container.style.width = "100%";
 
 grid.classList.add('grid');
 grid.style.display = 'grid';
-grid.style.gridTemplateColumns = "repeat(16, 80px)";
-grid.style.gridTemplateRows = "repeat(16, 80px)";
+grid.style.gridTemplateColumns = "repeat(5, 30px)";
+grid.style.gridTemplateRows = "repeat(5, 30px)";
 grid.style.gridGap = "5px";
-let initGrid = 256;
+let initGrid = 10;
 
 button.style.display = 'inline-block';
 button.style.width = '500px;';
@@ -44,8 +42,6 @@ for(let i = 0; i < gridCount; i++) {
     grid.appendChild(element);
 }}
 
-createGridCell(initGrid);
-
 // CLEAR GRID BUTTON
 button.addEventListener('click', () => {
     const cells = document.querySelectorAll('.cell');
@@ -53,16 +49,18 @@ button.addEventListener('click', () => {
         cell.style.background = 'white';
         
     });
+    
     let newGridCount = Number(window.prompt("Type a number up to 100", ""));
         if (newGridCount > 100 || newGridCount !== typeof number) {
             newGridCount = 100;
         }
         removeCells();
+        grid.remove();
         grid.style.gridTemplateColumns = `repeat(${newGridCount}, 80px)`;
         grid.style.gridTemplateRows = `repeat(${newGridCount}, 80px)`;
         createGridCell(newGridCount);
         container.appendChild(grid);
-        console.log(' fix here');
+        console.log('fix here');
 });
 
 // REMOVE CELL ELEMENTS
@@ -73,17 +71,16 @@ function removeCells(){
     });
 }
 
-// const cells = document.querySelectorAll('cell');
-// cells.forEach((cell) => {
-//     cell.addEventListener('mouseover', () => {
-//         console.log("forEach worked");
-//     })
-// })
-document.body.appendChild(button);
-container.appendChild(grid);
-document.body.appendChild(container);
-console.log('a');
+// FIRST RUN
+function initialize(){
+    createGridCell(initGrid);
+    document.body.appendChild(button);
+    container.appendChild(grid);
+    document.body.appendChild(container);
+    console.log('a');
+}
 
+initialize();
 // TODO 
 // - Cannot create cells
 // - Center clear button 
